@@ -1,0 +1,32 @@
+﻿[
+  {
+    "name": "Dharok the Wretched",
+    "level": 115,
+    "rewards": [ 4716, 4720, 4718, 4722 ]
+  },
+  {
+    "name": "Ahrim the Blighted",
+    "level": 98,
+    "rewards": [ 4708, 4710, 4712, 4714 ]
+  },
+  {
+    "name": "Guthan the Infested",
+    "level": 115,
+    "rewards": [ 4724, 4726, 4728, 4730 ]
+  },
+  {
+    "name": "Verac the Defiled",
+    "level": 115,
+    "rewards": [ 4753, 4755, 4757, 4759 ]
+  },
+  {
+    "name": "Torag the Corrupted",
+    "level": 115,
+    "rewards": [ 4745, 4747, 4749, 4751 ]
+  },
+  {
+    "name": "Karil the Tainted",
+    "level": 98,
+    "rewards": [ 4732, 4734, 4736, 4738 ]
+  }
+]

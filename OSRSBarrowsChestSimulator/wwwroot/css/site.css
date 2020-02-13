@@ -1,0 +1,451 @@
+﻿
+@font-face {
+    font-family: "RuneScape-Plain-11";
+    src: url("./runescape/font/RuneScape-Plain-11.ttf") format("truetype");
+}
+@font-face {
+    font-family: "RuneScape-Plain-12";
+    src: url("./runescape/font/RuneScape-Plain-12.ttf") format("truetype");
+}
+@font-face {
+    font-family: "RuneScape-Bold-12";
+    src: url("./runescape/font/RuneScape-Bold-12.ttf") format("truetype");
+}
+
+app {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    flex-direction: column;
+    color: white;
+    background: #222020;
+}
+
+form {
+    flex-shrink:0;
+}
+
+
+
+.chest-btn {
+    position: relative;
+    display: inline-block;
+    border: none;
+    width: 128px;
+    height: 101px;
+    background-image: url('../img/barrows_chest.png');
+    background-color: transparent;
+    transform-origin: center;
+    transition: 100ms ease-in;
+}
+    
+
+.chest-btn:hover {
+            transform: scale(1.07);
+ }
+
+.chest-btn:focus{
+    outline:none;
+}
+
+.logo {
+    margin-right: 3rem;
+    width: 9rem;
+}
+
+.content {
+   flex: 1;
+}
+
+.top-bar {
+    height: 3rem;
+    background-color: rgb(70, 61, 50);
+    background-image: linear-gradient(rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.25) 25%, rgba(0,0,0,0) 70%);
+    display: flex;
+    align-items: stretch;
+    color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    padding: 0 3rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.nav-tab {
+    margin: 0;
+    padding: 0.3rem 1.8rem;
+    display: inline-block;
+    background-color: rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: white;
+    position: relative;
+    transition: 0.2s ease-out;
+}
+
+    .nav-tab:hover {
+        color: white;
+        text-decoration: none;
+        background-color: rgba(255,255,255,0.3);
+    }
+
+    .nav-tab.active {
+        background-color: rgba(255,255,255,0.2);
+        color: #fff2cc;
+    }
+
+    .nav-tab img {
+        height: 2rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .nav-tab.active img {
+        filter: brightness(0) saturate(100%) invert(93%) sepia(18%) saturate(797%) hue-rotate(316deg) brightness(109%) contrast(101%);
+    }
+
+.user-info {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+    .user-info img {
+        margin-right: 0.7rem;
+        width: 2.6rem;
+    }
+
+    .user-info .username {
+        display: block;
+        font-weight: 700;
+        line-height: 0.7rem;
+        margin-top: 0.5rem;
+    }
+
+    .user-info a {
+        color: #fff2cc;
+        font-size: 0.8rem;
+    }
+
+.main-container {
+    display: flex;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-self: center;
+    -moz-box-pack: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.body-container {
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    margin: 10rem;
+}
+
+.modal-body-settings {
+	position: relative;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	padding: 2rem;
+	display: flex;
+	flex-flow: column;
+	/* justify-content: center; */
+	justify-items: center;
+	/* place-content: center; */
+	/* align-content: center; */
+	align-items: center;
+	/* background: rgb(73, 63, 52) none repeat scroll 0% 0%; */
+	color: #ff981f;
+}
+
+
+
+.barrows-chest-container {
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction :column;
+}
+
+.collection-log-chest-info {
+    color: #ff981f;
+    display: flex;
+    margin: 0rem 0rem 0 -1px;
+    font-family: RuneScape-Plain-11;
+    padding: 4.5rem 1.3rem 0rem 220px;
+    text-shadow: 1px 1px 0px black;
+}
+
+    .collection-log-chest-info .open-count {
+        margin-left: 4px;
+        color: white;
+    
+
+}
+
+.barrows-collection-log-container {
+  margin: 2rem;
+}
+
+.barrows-collection-log-interface-container {
+    background-image: url('../img/collection_log_bg.png');
+    background-repeat: no-repeat;
+    height: 307px;
+    width: 497px;
+}
+
+.barrows-collection-log-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.2rem 0.5rem 0 13.5rem;
+}
+
+    .barrows-collection-log-items-container > li {
+        background-repeat: no-repeat;
+        position: relative;
+        list-style-type: none;
+        transition: none;
+        width: 32px;
+        height: 36px;
+        margin: 0rem 11px 0 0;
+    }
+
+
+.barrows-loot-container {
+    height: 198px;
+    width: 230px;
+    background-image: url('../img/barrows_chest_bg.png');
+    background-repeat: no-repeat;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: stretch;
+    color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    padding: 2.5rem 0rem 4rem 5.5rem;
+}
+
+
+
+    .barrows-loot-container > li {
+        background-repeat: no-repeat;
+        position: relative;
+        list-style-type: none;
+        transition: none;
+        width: 36px;
+        height: 40px;
+        margin: 0rem 11px 0 0;
+    }
+
+
+
+.item-info {
+
+    padding: 0rem 0 0 0;
+    /* color: #fff2cc; */
+    /* cursor: pointer; */
+    /* text-shadow: 0 2px 2px rgba(0,0,0,0.5); */
+    line-height: 11px;
+}
+
+    .item-info .amount {
+        color: #ffff00;
+        display: block;
+        margin: -1px 0px 1px 0px;
+        font-family: RuneScape-Plain-11;
+        text-shadow: 1px 1px 0px black;
+        /* text-transform: uppercase; */
+    }
+
+    .item-info .empty-chest {
+        color: #ffff00;
+        display: block;
+        text-shadow: 1px 1px 0px black;
+        font-family: RuneScape-Plain-12;
+        width: 100px;
+        margin: 3rem 1rem 1rem 1rem;
+        line-height: 1;
+    }
+
+    .item-info .empty-collection {
+        color: #ffff00;
+        display: block;
+        font-family: RuneScape-Plain-12;
+        width: 200px;
+        margin: 2rem;
+        line-height: 1;
+        text-shadow: 1px 1px 0px black;
+    }
+
+
+
+
+
+input[type=range] {
+    -webkit-appearance: none;
+    margin: 7.1px 0;
+    height: 21px;
+}
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 5.8px;
+        cursor: pointer;
+        box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
+        background: #dcdcdc;
+        border-radius: 1.3px;
+        border: 0px solid #010101;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        box-shadow: 0.9px 0.9px 1px rgba(0, 0, 49, 0.43), 0px 0px 0.9px rgba(0, 0, 75, 0.43);
+        border: 0px solid #00001e;
+        height: 20px;
+        width: 20px;
+        border-radius: 10px;
+        background: #d45352;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -7.1px;
+    }
+
+    input[type=range]:focus::-webkit-slider-runnable-track {
+        background: #e1e1e1;
+    }
+
+    input[type=range]::-moz-range-track {
+        width: 100%;
+        height: 5.8px;
+        cursor: pointer;
+        box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
+        background: #dcdcdc;
+        border-radius: 1.3px;
+        border: 0px solid #010101;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        box-shadow: 0.9px 0.9px 1px rgba(0, 0, 49, 0.43), 0px 0px 0.9px rgba(0, 0, 75, 0.43);
+        border: 0px solid #00001e;
+        height: 20px;
+        width: 20px;
+        border-radius: 10px;
+        background: #d45352;
+        cursor: pointer;
+    }
+
+    input[type=range]::-ms-track {
+        width: 100%;
+        height: 5.8px;
+        cursor: pointer;
+        background: transparent;
+        border-color: transparent;
+        color: transparent;
+    }
+
+    input[type=range]::-ms-fill-lower {
+        background: #d7d7d7;
+        border: 0px solid #010101;
+        border-radius: 2.6px;
+        box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
+    }
+
+    input[type=range]::-ms-fill-upper {
+        background: #dcdcdc;
+        border: 0px solid #010101;
+        border-radius: 2.6px;
+        box-shadow: 0px 0px 1px #000000, 0px 0px 0px #0d0d0d;
+    }
+
+    input[type=range]::-ms-thumb {
+        box-shadow: 0.9px 0.9px 1px rgba(0, 0, 49, 0.43), 0px 0px 0.9px rgba(0, 0, 75, 0.43);
+        border: 0px solid #00001e;
+        height: 20px;
+        width: 20px;
+        border-radius: 10px;
+        background: #d45352;
+        cursor: pointer;
+        margin-top: 0;
+    }
+
+
+
+.loading-bar {
+    position: absolute;
+    top: calc(50% + 250px);
+    left: calc(50% - 250px);
+    width: 500px;
+    height: 6px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2)
+}
+
+    .loading-bar::after {
+        content: '';
+        display: block;
+        width: 200px;
+        height: 100%;
+        background-color: #494034;
+        animation: progressbar-slide 1s infinite;
+        animation-timing-function: ease-in-out;
+    }
+
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+@keyframes progressbar-slide {
+    0% {
+        transform: translateX(-200px);
+    }
+
+    70% {
+        transform: translateX(500px);
+    }
+
+    100% {
+        transform: translateX(500px);
+    }
+}
+@media (max-width: 768px) {
+    .body-container {
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+
+    form {
+        width: 50%;
+    }
+}

@@ -1,0 +1,241 @@
+﻿@page "/"
+@inject RewardChestService RewardChestService 
+@inject BarrowsBrotherService BarrowsBrotherService
+@inject RewardItemDefinitionService RewardItemDefinitonService
+
+<div class="main">
+
+
+    <div class="main-container">
+
+        <div class="body-container">
+
+
+
+            <!-- Edit form for player settings that affects the chest loot -->
+
+            <EditForm Context="formContext"
+                      Model="settings
+                      ">
+
+
+                <div class="modal-body-settings">
+
+                    <p>
+
+
+                        <label for="Killed-Dharok">Killed Dharok: </label>
+                        <InputCheckbox id="Killed-Dharok"
+                                       @bind-Value="settings.KilledDharok" />
+
+                    </p>
+
+                    <p>
+
+
+                        <label for="Killed-Ahrim">Killed Ahrim: </label>
+                        <InputCheckbox id="Killed-Ahrim"
+                                       @bind-Value="settings.KilledAhrim" />
+
+                    </p>
+
+
+                    <p>
+
+
+                        <label for="Killed-Karil">Killed Karil: </label>
+                        <InputCheckbox id="Killed-Karil"
+                                       @bind-Value="settings.KilledKaril" />
+
+                    </p>
+
+                    <p>
+
+
+                        <label for="Killed-Guthan">Killed Guthan: </label>
+                        <InputCheckbox id="Killed-Guthan"
+                                       @bind-Value="settings.KilledGuthan" />
+
+                    </p>
+
+
+                    <p>
+
+
+                        <label for="Killed-Verac">Killed Verac: </label>
+                        <InputCheckbox id="Killed-Verac"
+                                       @bind-Value="settings.KilledVerac" />
+
+                    </p>
+
+                    <p>
+
+
+                        <label for="Killed-Torag">Killed Torag: </label>
+                        <InputCheckbox id="Killed-Torag"
+                                       @bind-Value="settings.KilledTorag" />
+
+                    </p>
+
+                    <p>
+
+                        <label for="TotalLevel">Total Level of Crypt Monsters Killed: </label>
+
+                        <InputNumber id="TotalLevel" class="form-control"
+                                     @bind-Value="settings.SumTotalLevelOfCryptMonstersKilled" />
+
+                    </p>
+
+
+
+                    <br />
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+
+                </div>
+
+            </EditForm>
+
+
+
+            <div class="barrows-chest-container">
+
+                <ul class="barrows-loot-container">
+                    @if (rewardChest.Items.Any())
+                    {
+
+                        @foreach (var item in rewardChest.Items.Values)
+                        {
+                            var def = RewardItemDefinitonService.FindAnyItemDefinitionInStore(item.Id);
+                            @if (def != null)
+                            {
+                                <li title="@def.Name" style="background-image: url('@def.ImageUrl(item.Amount)')">
+                                    <div class="item-info">
+                                        @if (item.Amount > 1)
+                                        {
+                                            <span class="amount">@item.Amount</span>
+                                        }
+                                    </div>
+                                </li>
+
+                            }
+                        }
+
+
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="item-info">
+                                    <span class="empty-chest">Click on the chest to try your luck!</span>
+                            </div>
+                        </li>
+                    }
+                </ul>
+
+                <button class="chest-btn" @onclick="Open" title="Open"></button>
+
+            </div>
+
+
+            <!---->
+
+
+            <div class="barrows-collection-log-container">
+
+
+                <div class="barrows-collection-log-interface-container">
+
+                    <div class="collection-log-chest-info">
+
+                        Barrows Chests opened:
+                        <span class="open-count">@collectionLog.ChestsOpenedCount</span>
+
+                    </div>
+
+
+                    <ul class="barrows-collection-log-items-container">
+                        @if (collectionLog.Items.Any())
+                        {
+
+                            @foreach (var item in collectionLog.Items.Values)
+                            {
+                                var def = RewardItemDefinitonService.FindAnyItemDefinitionInStore(item.Id);
+                                @if (def != null)
+                                {
+                                    <li title="@def.Name" style="background-image: url('@def.ImageUrl(item.Amount)')">
+                                        <div class="item-info">
+                                            @if (item.Amount > 1)
+                                            {
+                                                <span class="amount">@item.Amount</span>
+                                            }
+                                        </div>
+                                    </li>
+
+                                }
+                            }
+
+
+                        }
+                        else
+                        {
+                            <li>
+                                <div class="item-info">
+                                    <span class="empty-collection">Barrows equipment that you earn will show here!</span>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+             
+
+            </div>
+
+    </div>
+</div>
+
+@code {
+
+
+    private PlayerSettings settings;
+    private RewardChest rewardChest;
+    private CollectionLog collectionLog;
+
+    protected override void OnInitialized()
+    {
+        settings = new PlayerSettings();
+        rewardChest = new RewardChest();
+        collectionLog = new CollectionLog();
+
+    }
+
+
+    protected void Open()
+    {
+
+        rewardChest.Clear();
+
+        var rewardedItems = RewardChestService.SimulateBarrowsRewardChest(BarrowsBrotherService.GetBrothersKilled(settings), settings.SumTotalLevelOfCryptMonstersKilled);
+
+
+        foreach(var item in rewardedItems)
+        {
+            rewardChest.AddItem(item);
+
+            bool equipment = RewardItemDefinitonService.IsBarrowsEquipment(item.Id);
+            if(equipment)
+            collectionLog.AddItem(item);
+        }
+
+        collectionLog.ChestsOpenedCount++;
+
+
+    }
+
+}

@@ -1,0 +1,69 @@
+﻿[
+  {
+    "id": 995,
+    "name": "Coins",
+    "rewardPotentialRequirement": 1,
+    "maxRewardPotentialRequirement": 380,
+    "divisor": 0.5
+  },
+  {
+    "id": 558,
+    "name": "Mind rune",
+    "rewardPotentialRequirement": 381,
+    "maxRewardPotentialRequirement": 505,
+    "divisor": 1.5,
+    "rune": true
+  },
+  {
+    "id": 562,
+    "name": "Chaos rune",
+    "rewardPotentialRequirement": 506,
+    "maxRewardPotentialRequirement": 630,
+    "divisor": 4.5,
+    "rune": true
+  },
+  {
+    "id": 560,
+    "name": "Death rune",
+    "rewardPotentialRequirement": 631,
+    "maxRewardPotentialRequirement": 755,
+    "divisor": 9,
+    "rune": true
+  },
+  {
+    "id": 565,
+    "name": "Blood rune",
+    "rewardPotentialRequirement": 756,
+    "maxRewardPotentialRequirement": 880,
+    "divisor": 20,
+    "rune": true
+  },
+  {
+    "id": 987,
+    "name": "Loop half of key",
+    "rewardPotentialRequirement": 1006,
+    "maxRewardPotentialRequirement": 1008,
+    "divisor": 1000
+  },
+  {
+    "id": 985,
+    "name": "Tooth half of key",
+    "rewardPotentialRequirement": 1009,
+    "maxRewardPotentialRequirement": 1011,
+    "divisor": 1000
+  },
+  {
+    "id": 1149,
+    "name": "Dragon med helm",
+    "rewardPotentialRequirement": 1012,
+    "maxRewardPotentialRequirement": 1012,
+    "divisor": 1000
+  },
+  {
+    "id": 4740,
+    "name": "Bolt rack",
+    "rewardPotentialRequirement": 881,
+    "maxRewardPotentialRequirement": 1005,
+    "divisor": 25
+  }
+]
