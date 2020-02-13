@@ -28,4 +28,4 @@ OSRS Barrows Chest Simulator is a web application that simulates the rewards tha
 
 ## Note
 
-All game assets used on this site such as graphics, fonts, images, text and data compilations are owned by Jagex. This project was made to learn C#, HTML, CSS and Blazor. Thus, this project is for educational purposes only.
+All game assets used on the web application such as graphics, fonts, images, text and data compilations are owned by Jagex. This project was made to learn C#, HTML, CSS and Blazor. Thus, this project is for educational purposes only.
