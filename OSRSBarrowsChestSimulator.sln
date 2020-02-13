@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29721.120
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OSRSBarrowsChestSimulator", "OSRSBarrowsChestSimulator\OSRSBarrowsChestSimulator.csproj", "{E823838E-C8F8-4D8C-B926-819CCC4CE5A3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B73D8DB-3C50-40F9-9D40-B7FEAA10FA16}"
+	ProjectSection(SolutionItems) = preProject
+		OSRSBarrowsChestSimulator\README.md = OSRSBarrowsChestSimulator\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
