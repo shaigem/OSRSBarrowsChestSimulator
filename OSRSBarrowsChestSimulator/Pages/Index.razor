@@ -1,5 +1,5 @@
 ﻿@page "/"
-@inject RewardChestService RewardChestService 
+@inject RewardChestService RewardChestService
 @inject BarrowsBrotherService BarrowsBrotherService
 @inject RewardItemDefinitionService RewardItemDefinitonService
 
@@ -7,98 +7,91 @@
 
 
     <div class="main-container">
+        <!-- Edit form for player settings that affects the chest loot -->
 
-        <div class="body-container">
-
-
-
-            <!-- Edit form for player settings that affects the chest loot -->
-
-            <EditForm Context="formContext"
-                      Model="settings
+        <EditForm Context="formContext"
+                  Model="settings
                       ">
 
+            <div class="modal-body-settings">
 
-                <div class="modal-body-settings">
-
-                    <p>
-
-
-                        <label for="Killed-Dharok">Killed Dharok: </label>
-                        <InputCheckbox id="Killed-Dharok"
-                                       @bind-Value="settings.KilledDharok" />
-
-                    </p>
-
-                    <p>
+                <p>
 
 
-                        <label for="Killed-Ahrim">Killed Ahrim: </label>
-                        <InputCheckbox id="Killed-Ahrim"
-                                       @bind-Value="settings.KilledAhrim" />
+                    <label for="Killed-Dharok">Killed Dharok: </label>
+                    <InputCheckbox id="Killed-Dharok"
+                                   @bind-Value="settings.KilledDharok" />
 
-                    </p>
+                </p>
 
-
-                    <p>
-
-
-                        <label for="Killed-Karil">Killed Karil: </label>
-                        <InputCheckbox id="Killed-Karil"
-                                       @bind-Value="settings.KilledKaril" />
-
-                    </p>
-
-                    <p>
+                <p>
 
 
-                        <label for="Killed-Guthan">Killed Guthan: </label>
-                        <InputCheckbox id="Killed-Guthan"
-                                       @bind-Value="settings.KilledGuthan" />
+                    <label for="Killed-Ahrim">Killed Ahrim: </label>
+                    <InputCheckbox id="Killed-Ahrim"
+                                   @bind-Value="settings.KilledAhrim" />
 
-                    </p>
-
-
-                    <p>
+                </p>
 
 
-                        <label for="Killed-Verac">Killed Verac: </label>
-                        <InputCheckbox id="Killed-Verac"
-                                       @bind-Value="settings.KilledVerac" />
-
-                    </p>
-
-                    <p>
+                <p>
 
 
-                        <label for="Killed-Torag">Killed Torag: </label>
-                        <InputCheckbox id="Killed-Torag"
-                                       @bind-Value="settings.KilledTorag" />
+                    <label for="Killed-Karil">Killed Karil: </label>
+                    <InputCheckbox id="Killed-Karil"
+                                   @bind-Value="settings.KilledKaril" />
 
-                    </p>
+                </p>
 
-                    <p>
-
-                        <label for="TotalLevel">Total Level of Crypt Monsters Killed: </label>
-
-                        <InputNumber id="TotalLevel" class="form-control"
-                                     @bind-Value="settings.SumTotalLevelOfCryptMonstersKilled" />
-
-                    </p>
+                <p>
 
 
+                    <label for="Killed-Guthan">Killed Guthan: </label>
+                    <InputCheckbox id="Killed-Guthan"
+                                   @bind-Value="settings.KilledGuthan" />
 
-                    <br />
-                    <DataAnnotationsValidator />
-                    <ValidationSummary />
+                </p>
 
 
-                </div>
+                <p>
 
-            </EditForm>
+
+                    <label for="Killed-Verac">Killed Verac: </label>
+                    <InputCheckbox id="Killed-Verac"
+                                   @bind-Value="settings.KilledVerac" />
+
+                </p>
+
+                <p>
+
+
+                    <label for="Killed-Torag">Killed Torag: </label>
+                    <InputCheckbox id="Killed-Torag"
+                                   @bind-Value="settings.KilledTorag" />
+
+                </p>
+
+                <p>
+
+                    <label for="TotalLevel">Total Level of Crypt Monsters Killed: </label>
+
+                    <InputNumber id="TotalLevel" class="form-control"
+                                 @bind-Value="settings.SumTotalLevelOfCryptMonstersKilled" />
+
+                </p>
 
 
 
+                <br />
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+
+            </div>
+
+        </EditForm>
+
+        <div class="body-container">
             <div class="barrows-chest-container">
 
                 <ul class="barrows-loot-container">
@@ -128,7 +121,7 @@
                     {
                         <li>
                             <div class="item-info">
-                                    <span class="empty-chest">Click on the chest to try your luck!</span>
+                                <span class="empty-chest">Click on the chest to try your luck!</span>
                             </div>
                         </li>
                     }
@@ -193,9 +186,9 @@
 
 
             </div>
-             
 
-            </div>
+
+        </div>
 
     </div>
 </div>
@@ -224,12 +217,12 @@
         var rewardedItems = RewardChestService.SimulateBarrowsRewardChest(BarrowsBrotherService.GetBrothersKilled(settings), settings.SumTotalLevelOfCryptMonstersKilled);
 
 
-        foreach(var item in rewardedItems)
+        foreach (var item in rewardedItems)
         {
             rewardChest.AddItem(item);
 
             bool equipment = RewardItemDefinitonService.IsBarrowsEquipment(item.Id);
-            if(equipment)
+            if (equipment)
                 collectionLog.AddItem(item);
         }
 

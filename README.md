@@ -10,12 +10,12 @@ OSRS Barrows Chest Simulator is a web application that simulates the rewards tha
 ![main-img]
 
 
-[main-img]: https://i.imgur.com/jRuyIiT.png
+[main-img]: https://i.imgur.com/5RlOBCk.png
 
 
 ## Formulas
 
-[![alt text][formula]](https://twitter.com/jagexkieren/status/705428283509366785)
+[![Twitter - Jagex Kieren][formula]](https://twitter.com/jagexkieren/status/705428283509366785)
 
 * Calculations from [Old School RuneScape Wiki](https://oldschool.runescape.wiki/w/Chest_(Barrows))
 

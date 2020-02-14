@@ -157,26 +157,33 @@ form {
     display: flex;
     -moz-box-align: center;
     align-items: center;
-    margin: 10rem;
+    /* margin: 10rem; */
+    margin-bottom: 5rem;
+    margin-top: 2rem;
 }
 
 .modal-body-settings {
-	position: relative;
-	-ms-flex: 1 1 auto;
-	flex: 1 1 auto;
-	padding: 2rem;
-	display: flex;
-	flex-flow: column;
-	/* justify-content: center; */
-	justify-items: center;
-	/* place-content: center; */
-	/* align-content: center; */
-	align-items: center;
-	/* background: rgb(73, 63, 52) none repeat scroll 0% 0%; */
-	color: #ff981f;
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    /* padding: 3rem; */
+    display: flex;
+    /* flex-flow: column; */
+    /* justify-content: center; */
+    justify-items: center;
+    /* place-content: center; */
+    /* align-content: center; */
+    align-items: center;
+    /* background: rgb(73, 63, 52) none repeat scroll 0% 0%; */
+    color: #ff981f;
+    padding-top: 5rem;
 }
 
 
+    .modal-body-settings > p {
+        margin-left: 2rem;
+        font-family: RuneScape-Bold-12;
+    }
 
 .barrows-chest-container {
     display: flex;
