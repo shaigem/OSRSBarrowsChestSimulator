@@ -115,19 +115,9 @@
                             var def = RewardItemDefinitonService.FindAnyItemDefinitionInStore(item.Id);
                             @if (def != null)
                             {
-                                <li title="@item.GetFormattedNumberString() x @def.Name" style="background-image: url('@def.ImageUrl(item.Amount)')">
-                                    <div class="item-info">
-                                        @if (item.Amount > 1)
-                                        {
-                                            <span class="amount">@item.GetRSFormattedAmount()</span>
-                                        }
-                                    </div>
-                                </li>
-
+                                <RewardItemComponent RewardItemDefinition="def" RewardItem="item"> </RewardItemComponent>
                             }
                         }
-
-
                     }
                     else
                     {
@@ -169,15 +159,7 @@
                                 var def = RewardItemDefinitonService.FindAnyItemDefinitionInStore(item.Id);
                                 @if (def != null)
                                 {
-                                    <li class="@(item.Amount == 0 ? "item-faded" : "")" title="@item.GetFormattedNumberString() x @def.Name" style="background-image: url('@def.ImageUrl(item.Amount)')">
-                                        <div class="item-info">
-                                            @if (item.Amount > 1)
-                                            {
-                                                <span class="amount" style="color: @RSItemAmountStringHelper.GetColorForFormattedAmount(item.Amount)">@item.GetRSFormattedAmount()</span>
-                                            }
-                                        </div>
-                                    </li>
-
+                                    <RewardItemComponent RewardItemDefinition="def" RewardItem="item"> </RewardItemComponent>
                                 }
                             }
 
@@ -212,6 +194,8 @@
     private RewardChest rewardChest;
     private CollectionLog collectionLog;
 
+
+
     protected override void OnInitialized()
     {
         settings = new PlayerSettings();
@@ -219,7 +203,6 @@
         collectionLog = new CollectionLog();
         InitializeCollectionLogItems();
     }
-
 
     protected void InitializeCollectionLogItems()
     {
@@ -230,6 +213,9 @@
             collectionLog.AddItem(new RewardItem() { Id = def.Id, Amount = 0 });
         }
     }
+
+
+
 
     protected void Open()
     {

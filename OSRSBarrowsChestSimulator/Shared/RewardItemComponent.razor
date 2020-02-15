@@ -1,0 +1,28 @@
+﻿<li class="@(RewardItem.Amount == 0 ? "item-faded" : "item")" title=@(RewardItem.GetFormattedNumberString() + " x " + RewardItemDefinition.Name) style="background-image: url('@RewardItemDefinition.ImageUrl(RewardItem.Amount)')">
+   
+
+
+    @if (RewardItem.Amount > 0)
+    {
+
+    <span class="tooltiptext tooltip-top">@(RewardItem.GetFormattedNumberString() + " x " + RewardItemDefinition.Name)</span>
+    }
+
+    @if (RewardItem.Amount > 1)
+    {
+    <div class="item-info">
+            <span class="amount">@RewardItem.GetRSFormattedAmount()</span>
+    </div>
+    }
+
+
+
+
+</li>
+
+@code {
+
+    [Parameter] public RewardItemDefinition RewardItemDefinition { get; set; }
+
+    [Parameter] public RewardItem RewardItem { get; set; }
+}
