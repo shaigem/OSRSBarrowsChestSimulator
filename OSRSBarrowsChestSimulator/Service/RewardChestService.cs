@@ -12,7 +12,7 @@ namespace OSRSBarrowsChestSimulator
             _rewardItemDefinitionService = rewardItemDefinitionService;
         }
 
-        public IList<RewardItem> SimulateBarrowsRewardChest(List<BarrowsBrother> brothersKilled, int totalLevelOfCryptMonstersKilled)
+        public IList<RewardItem> SimulateBarrowsRewardChest(List<BarrowsBrother> brothersKilled, int totalLevelOfCryptMonstersKilled, bool completedHardDiary)
         {
 
             var rewardItems = new List<RewardItem>();
@@ -73,6 +73,13 @@ namespace OSRSBarrowsChestSimulator
                             var maxQuantity = Math.Floor(Math.Min(max, rolledRewardPotential) /
                                                          itemDefinition.Divisor);
 
+                            
+                            if(itemDefinition.Rune && completedHardDiary)
+                            {
+                                minQuantity = Math.Floor(minQuantity * 1.5);
+                                maxQuantity = Math.Floor(maxQuantity * 1.5);
+
+                            }
 
                             var randomQuantity = RandomHelper.Instance.Next((int)minQuantity, (int)(maxQuantity + 1));
 

@@ -226,7 +226,7 @@ form {
     margin-bottom: 5rem;
 }
 
-.modal-body-settings {
+.modal-body-settings { 
     position: relative;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
@@ -244,10 +244,34 @@ form {
 }
 
 
+
+.modal-body-settings-2 {
+    position: relative;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    /* padding: 3rem; */
+    display: flex;
+    /* flex-flow: column; */
+     justify-content: center; 
+    justify-items: center;
+    place-content: center; 
+    align-content: center; 
+    align-items: center;
+    /* background: rgb(73, 63, 52) none repeat scroll 0% 0%; */
+    color: #ff981f;
+}
+
     .modal-body-settings > p {
         margin-left: 2rem;
         font-family: RuneScape-Bold-12;
     }
+
+    .modal-body-settings-2 > p {
+        margin-left: 2rem;
+        font-family: RuneScape-Bold-12;
+    }
+
+
 
 .barrows-chest-container {
     display: flex;

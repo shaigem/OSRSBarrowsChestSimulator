@@ -71,12 +71,26 @@
 
                 </p>
 
+
+                <br />
+
+            </div>
+            <div class="modal-body-settings-2">
+
+                <p>
+
+
+                    <label for="Diary">Morytania Hard Diary: </label>
+                    <InputCheckbox id="Diary"
+                                   @bind-Value="settings.CompletedMorytaniaHardDiary" />
+
+                </p>
+
                 <p>
 
                     <label for="TotalLevel">Sum Lvl of Crypt NPCs Killed: </label>
 
-                    <InputNumber id="TotalLevel" class="form-control"
-                                 @bind-Value="settings.SumTotalLevelOfCryptMonstersKilled" />
+                    <InputNumber id="TotalLevel" class="form-control" @bind-Value="settings.SumTotalLevelOfCryptMonstersKilled" min="0" max="1000" required />
 
                 </p>
 
@@ -88,8 +102,7 @@
 
 
             </div>
-
-        </EditForm>
+</EditForm>
 
         <div class="calculated-rp">
 
@@ -214,15 +227,12 @@
         }
     }
 
-
-
-
     protected void Open()
     {
 
         rewardChest.Clear();
 
-        var rewardedItems = RewardChestService.SimulateBarrowsRewardChest(BarrowsBrotherService.GetBrothersKilled(settings), settings.SumTotalLevelOfCryptMonstersKilled);
+        var rewardedItems = RewardChestService.SimulateBarrowsRewardChest(BarrowsBrotherService.GetBrothersKilled(settings), settings.SumTotalLevelOfCryptMonstersKilled, settings.CompletedMorytaniaHardDiary);
 
 
         foreach (var item in rewardedItems)
@@ -235,5 +245,4 @@
 
 
     }
-
-}
+    }

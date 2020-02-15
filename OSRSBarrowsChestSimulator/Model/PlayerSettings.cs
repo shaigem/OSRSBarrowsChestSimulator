@@ -18,6 +18,8 @@ namespace OSRSBarrowsChestSimulator
 
         public bool KilledTorag { get; set; } = true;
 
+        public bool CompletedMorytaniaHardDiary { get; set; } = true;
+
         [Required, Range(0, 1000, ErrorMessage = "Total level should be between 0 to 1000.")]
         public int SumTotalLevelOfCryptMonstersKilled { get; set; } = 1000;
     }
