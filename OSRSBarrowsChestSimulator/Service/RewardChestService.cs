@@ -18,8 +18,6 @@ namespace OSRSBarrowsChestSimulator
             var rewardItems = new List<RewardItem>();
             var potentialBarrowsEquipment = new List<RewardItem>();
 
-            var totalLevel = totalLevelOfCryptMonstersKilled;
-
             var numBrothersKilled = brothersKilled.Count;
 
             if (numBrothersKilled > 0)
@@ -34,18 +32,13 @@ namespace OSRSBarrowsChestSimulator
                     }
                 }
 
-
-                foreach (var barrowsBrother in brothersKilled)
-                {
-                    totalLevel += barrowsBrother.Level;
-                }
             }
 
             var totalRolls = 1 + numBrothersKilled;
-            int totalRewardPotential = ChanceHelper.CalculateRewardPotential(totalLevel, numBrothersKilled);
+            int totalRewardPotential = ChanceHelper.CalculateRewardPotential(totalLevelOfCryptMonstersKilled, brothersKilled);
 
 
-            Console.WriteLine($"Total Rolls = {totalRolls}, Total Level / Potential = {totalLevel}/{totalRewardPotential}, Potential Barrows = {potentialBarrowsEquipment.Count}");
+        //    Console.WriteLine($"Total Rolls = {totalRolls}, Total Level / Potential = {totalLevel}/{totalRewardPotential}, Potential Barrows = {potentialBarrowsEquipment.Count}");
 
             for (var roll = 1; roll <= totalRolls; roll++)
             {
@@ -69,36 +62,33 @@ namespace OSRSBarrowsChestSimulator
                     {
                         if (rolledRewardPotential < itemDefinition.RewardPotentialRequirement) continue;
 
+                        var min = itemDefinition.RewardPotentialRequirement;
+                        var max = itemDefinition.MaxRewardPotentialRequirement;
 
-                        var minQuantity = Math.Floor(itemDefinition.RewardPotentialRequirement / itemDefinition.Divisor);
-                        var maxQuantity = Math.Floor(Math.Min(itemDefinition.MaxRewardPotentialRequirement, rolledRewardPotential) /
-                                                     itemDefinition.Divisor);
+                        // in order to receive an item, rolled RP should be between the item's minimum unlock requirement and the maximum unlock requirement of the next item in the table
+                        if (rolledRewardPotential >= min && rolledRewardPotential <= max)
+                        {
+
+                            var minQuantity = Math.Floor(min / itemDefinition.Divisor);
+                            var maxQuantity = Math.Floor(Math.Min(max, rolledRewardPotential) /
+                                                         itemDefinition.Divisor);
 
 
-                        var randomQuantity = RandomHelper.Instance.Next((int)minQuantity, (int)(maxQuantity + 1));
+                            var randomQuantity = RandomHelper.Instance.Next((int)minQuantity, (int)(maxQuantity + 1));
 
 
-                        var itemToAdd = new RewardItem { Id = itemDefinition.Id, Amount = randomQuantity };
+                            var itemToAdd = new RewardItem { Id = itemDefinition.Id, Amount = randomQuantity };
 
-                        Console.WriteLine($"Total = {totalRewardPotential}, rolled = {rolledRewardPotential}, minQty = {minQuantity}, maxQty = {maxQuantity}, randomQty = {randomQuantity}, recieved = {itemToAdd}");
+                   //         Console.WriteLine($"Total = {totalRewardPotential}, rolled = {rolledRewardPotential}, minQty = {minQuantity}, maxQty = {maxQuantity}, randomQty = {randomQuantity}, recieved = {itemDefinition.Name}, {itemDefinition.RewardPotentialRequirement}, {itemDefinition.MaxRewardPotentialRequirement}");
 
-                        rewardItems.Add(itemToAdd);
+
+                            rewardItems.Add(itemToAdd);
+                        }
 
                     }
 
                 }
 
-            }
-
-            // shuffle the items in the list so it mimics how it is in OSRS
-            int count = rewardItems.Count;
-            while (count > 1)
-            {
-                count--;
-                int k = RandomHelper.Instance.Next(count + 1);
-                RewardItem value = rewardItems[k];
-                rewardItems[k] = rewardItems[count];
-                rewardItems[count] = value;
             }
 
             return rewardItems;

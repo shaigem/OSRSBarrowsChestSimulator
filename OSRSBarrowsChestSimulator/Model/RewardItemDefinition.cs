@@ -21,12 +21,14 @@
             {
 
 
-                if (amount >= 1 && amount < 25)
+                if (amount >= 0 && amount < 25)
                 {
 
-                    if (amount <= 5)
+                 
+                    if (amount > 0 && amount <= 5)
 
                         return LocalImageDirectory + $"coins_{amount}.png";
+                    
                     else
                         return LocalImageDirectory + $"coins_5.png";
 
@@ -41,7 +43,7 @@
                 {
                     return LocalImageDirectory + "coins_100.png";
                 }
-                else if (amount >= 1000)
+                else if (amount >= 1000 && amount < 10000)
                 {
                     return LocalImageDirectory + "coins_1000.png";
                 }

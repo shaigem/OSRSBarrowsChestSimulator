@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace OSRSBarrowsChestSimulator
 {
@@ -13,9 +14,17 @@ namespace OSRSBarrowsChestSimulator
             return 450 - 58 * numberOfBrothersKilled;
         }
 
-        public static int CalculateRewardPotential(int sumOfCombatLevels, int numberOfBrothersKilled)
+        public static int CalculateRewardPotential(int sumOfCryptMonstersCombatLevels, List<BarrowsBrother> brothersKilled)
         {
-            return Math.Min(sumOfCombatLevels, MaximumCryptMonstersCombatLevel) + 2 * numberOfBrothersKilled;
+
+            var level = sumOfCryptMonstersCombatLevels;
+
+            foreach (var barrowsBrother in brothersKilled)
+            {
+                level += barrowsBrother.Level;
+            }
+
+            return Math.Min(level, MaximumCryptMonstersCombatLevel) + 2 * brothersKilled.Count;
         }
 
         public static bool RollAgainstBarrowsItem(int numberOfBrothersKilled)

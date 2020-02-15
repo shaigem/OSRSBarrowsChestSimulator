@@ -33,6 +33,14 @@ form {
     flex-shrink:0;
 }
 
+.calculated-rp {
+    font-family: RuneScape-Bold-12;
+    margin-bottom: -20px;
+}
+
+    .calculated-rp label {
+        color: #ffff00;
+    }
 
 
 .chest-btn {
@@ -82,7 +90,7 @@ form {
 }
 
 .nav-tab {
-    margin: 0;
+    margin: 2px;
     padding: 0.3rem 1.8rem;
     display: inline-block;
     background-color: rgba(0,0,0,0.1);
@@ -159,7 +167,6 @@ form {
     align-items: center;
     /* margin: 10rem; */
     margin-bottom: 5rem;
-    margin-top: 2rem;
 }
 
 .modal-body-settings {
@@ -233,8 +240,13 @@ form {
         transition: none;
         width: 32px;
         height: 36px;
-        margin: 0rem 11px 0 0;
+        margin: 0rem 5px 0 0;
     }
+
+.item-faded {
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
 
 
 .barrows-loot-container {

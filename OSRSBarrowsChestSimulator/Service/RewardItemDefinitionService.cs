@@ -13,7 +13,6 @@ namespace OSRSBarrowsChestSimulator
         }
 
 
-
         public RewardItemDefinition FindBarrowsEquipmentDefinition(int id)
         {
             return _store.EquipmentRewardItemDefinitions[id];
@@ -33,7 +32,6 @@ namespace OSRSBarrowsChestSimulator
             return FindOtherRewardDefinition(id);
         }
 
-
         public RewardItemDefinition FindOtherRewardDefinition(int id)
         {
             return _store.OtherRewardItemDefinitions[id];
@@ -44,8 +42,15 @@ namespace OSRSBarrowsChestSimulator
             return _store.OtherRewardItemDefinitions;
         }
 
+        public IDictionary<int, RewardItemDefinition> GetBarrowsEquipmentItemDefinitions()
+        {
+            return _store.EquipmentRewardItemDefinitions;
+        }
 
 
-
+        public HashSet<RewardItemDefinition> GetAllRewardItemDefinitions()
+        {
+            return _store.AllRewardItemDefinitions;
+        }
     }
 }

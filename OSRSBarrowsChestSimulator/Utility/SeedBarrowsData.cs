@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -21,8 +22,12 @@ namespace OSRSBarrowsChestSimulator
             var otherLootDefs = await client.GetJsonAsync<RewardItemDefinition[]>(BarrowsOtherLootFilePath);
             InitializeOtherLootData(store, otherLootDefs);
 
+            var combined = equipmentDefs.Concat(otherLootDefs).ToArray();
+            InitializeMasterDefinitionList(store, combined);
+
             var brotherDefs = await client.GetJsonAsync<BarrowsBrother[]>(BarrowsBrothersFilePath);
             InitializeBrothersData(store, brotherDefs);
+
         }
 
 
@@ -58,5 +63,19 @@ namespace OSRSBarrowsChestSimulator
                 }
             }
         }
+
+        private static void InitializeMasterDefinitionList(StoreContext store, RewardItemDefinition[] definitions)
+        {
+            if (definitions != null)
+            {
+                foreach (var def in definitions)
+                {
+                    store.AllRewardItemDefinitions.Add(def);
+                }
+            }
+                }
+
+            
+        
     }
 }

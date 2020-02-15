@@ -25,6 +25,7 @@ OSRS Barrows Chest Simulator is a web application that simulates the rewards tha
 
 * [Old School RuneScape Wiki](https://oldschool.runescape.wiki/w/Chest_(Barrows))
 * [Blazor Workshop](https://github.com/dotnet-presentations/blazor-workshop)
+* [RuneLite for image icons](https://runelite.net/)
 
 ## Note
 

@@ -73,7 +73,7 @@
 
                 <p>
 
-                    <label for="TotalLevel">Total Level of Crypt Monsters Killed: </label>
+                    <label for="TotalLevel">Sum Lvl of Crypt NPCs Killed: </label>
 
                     <InputNumber id="TotalLevel" class="form-control"
                                  @bind-Value="settings.SumTotalLevelOfCryptMonstersKilled" />
@@ -91,6 +91,18 @@
 
         </EditForm>
 
+        <div class="calculated-rp">
+
+            <p>
+
+                <label>Calculated Reward Potential: </label>
+                <span class="rp">
+                @ChanceHelper.CalculateRewardPotential(settings.SumTotalLevelOfCryptMonstersKilled, BarrowsBrotherService.GetBrothersKilled(settings))
+           </span>
+                    </p>
+
+        </div>
+
         <div class="body-container">
             <div class="barrows-chest-container">
 
@@ -103,11 +115,11 @@
                             var def = RewardItemDefinitonService.FindAnyItemDefinitionInStore(item.Id);
                             @if (def != null)
                             {
-                                <li title="@def.Name" style="background-image: url('@def.ImageUrl(item.Amount)')">
+                                <li title="@item.GetFormattedNumberString() x @def.Name" style="background-image: url('@def.ImageUrl(item.Amount)')">
                                     <div class="item-info">
                                         @if (item.Amount > 1)
                                         {
-                                            <span class="amount">@item.Amount</span>
+                                            <span class="amount">@item.GetRSFormattedAmount()</span>
                                         }
                                     </div>
                                 </li>
@@ -157,11 +169,11 @@
                                 var def = RewardItemDefinitonService.FindAnyItemDefinitionInStore(item.Id);
                                 @if (def != null)
                                 {
-                                    <li title="@def.Name" style="background-image: url('@def.ImageUrl(item.Amount)')">
+                                    <li class="@(item.Amount == 0 ? "item-faded" : "")" title="@item.GetFormattedNumberString() x @def.Name" style="background-image: url('@def.ImageUrl(item.Amount)')">
                                         <div class="item-info">
                                             @if (item.Amount > 1)
                                             {
-                                                <span class="amount">@item.Amount</span>
+                                                <span class="amount" style="color: @RSItemAmountStringHelper.GetColorForFormattedAmount(item.Amount)">@item.GetRSFormattedAmount()</span>
                                             }
                                         </div>
                                     </li>
@@ -205,9 +217,19 @@
         settings = new PlayerSettings();
         rewardChest = new RewardChest();
         collectionLog = new CollectionLog();
-
+        InitializeCollectionLogItems();
     }
 
+
+    protected void InitializeCollectionLogItems()
+    {
+        var definitions = RewardItemDefinitonService.GetAllRewardItemDefinitions();
+
+        foreach(var def in definitions)
+        {
+            collectionLog.AddItem(new RewardItem() { Id = def.Id, Amount = 0 });
+        }
+    }
 
     protected void Open()
     {
@@ -220,10 +242,7 @@
         foreach (var item in rewardedItems)
         {
             rewardChest.AddItem(item);
-
-            bool equipment = RewardItemDefinitonService.IsBarrowsEquipment(item.Id);
-            if (equipment)
-                collectionLog.AddItem(item);
+            collectionLog.AddItem(item);
         }
 
         collectionLog.ChestsOpenedCount++;
