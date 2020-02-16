@@ -10,9 +10,9 @@
 
     @if (RewardItem.Amount > 1)
     {
-    <div class="item-info">
-            <span class="amount">@RewardItem.GetRSFormattedAmount()</span>
-    </div>
+<div class="item-info">
+    <span class="amount" style="color: @RSItemAmountStringHelper.GetColorForFormattedAmount(RewardItem.Amount)">@RewardItem.GetRSFormattedAmount()</span>
+</div>
     }
 
 

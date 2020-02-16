@@ -78,7 +78,6 @@ namespace OSRSBarrowsChestSimulator
                             {
                                 minQuantity = Math.Floor(minQuantity * 1.5);
                                 maxQuantity = Math.Floor(maxQuantity * 1.5);
-
                             }
 
                             var randomQuantity = RandomHelper.Instance.Next((int)minQuantity, (int)(maxQuantity + 1));
