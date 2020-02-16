@@ -3,14 +3,14 @@
 
 OSRS Barrows Chest Simulator is a web application that simulates the rewards that a player gets when they complete the Barrows minigame in Old School RuneScape.
 
-* Keeps track of barrows equipments earned in the collection log
-* Allows customization of settings such as which brothers were killed and the total level of crypt monsters slained
+* Keeps track of all items earned in the collection log
+* Allows customization of settings such as which brothers were killed, the total level of crypt monsters slained and if the Morytania hard diary was completed or not.
 
 
 ![main-img]
 
 
-[main-img]: https://i.imgur.com/qZylj0W.png
+[main-img]: https://i.imgur.com/kS2xyDn.png
 
 
 ## Formulas
