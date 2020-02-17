@@ -6,7 +6,7 @@ namespace OSRSBarrowsChestSimulator
     {
 
 
-        public IDictionary<int, RewardItem> Items { get; set; } = new Dictionary<int, RewardItem>();
+        public IDictionary<int, RewardItem> Items { get; } = new Dictionary<int, RewardItem>();
 
 
         public void AddItem(RewardItem item)
