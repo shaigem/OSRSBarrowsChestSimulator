@@ -142,66 +142,80 @@
                     }
                 </ul>
 
-                <button class="chest-btn" @onclick="Open" title="Open"></button>
+                <div class="barrows-chest-actions-container">
+                    <button class="reset-btn" @onclick="Reset" title="Reset everything"></button>
+                    <button class="chest-btn" @onclick="Open" title="Open"></button>
+
+                </div>
+
+                <p class="x-times">
+                    <!--!-->
+                    <!--!--><label for="XTimes">Simulate how many times?</label>
+
+                    <input type="number" id="XTimes" class="form-control" @bind="simulateHowManyTimes" min="1" required />
+
+                </p>
 
             </div>
 
 
-            <!---->
+                <!---->
 
 
-            <div class="barrows-collection-log-container">
+                <div class="barrows-collection-log-container">
 
 
-                <div class="barrows-collection-log-interface-container">
+                    <div class="barrows-collection-log-interface-container">
 
-                    <div class="collection-log-chest-info">
+                        <div class="collection-log-chest-info">
 
-                        Barrows Chests opened:
-                        <span class="open-count">@collectionLog.ChestsOpenedCount</span>
+                            Barrows Chests opened:
+                            <span class="open-count">@collectionLog.ChestsOpenedCount</span>
+
+                        </div>
+
+
+                        <ul class="barrows-collection-log-items-container">
+                            @if (collectionLog.Items.Any())
+                            {
+
+                                @foreach (var item in collectionLog.Items.Values)
+                                {
+                                    var def = RewardItemDefinitonService.FindAnyItemDefinitionInStore(item.Id);
+                                    @if (def != null)
+                                    {
+                                        <RewardItemComponent RewardItemDefinition="def" RewardItem="item"> </RewardItemComponent>
+                                    }
+                                }
+
+
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="item-info">
+                                        <span class="empty-collection">Barrows equipment that you earn will show here!</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
 
                     </div>
 
 
-                    <ul class="barrows-collection-log-items-container">
-                        @if (collectionLog.Items.Any())
-                        {
-
-                            @foreach (var item in collectionLog.Items.Values)
-                            {
-                                var def = RewardItemDefinitonService.FindAnyItemDefinitionInStore(item.Id);
-                                @if (def != null)
-                                {
-                                    <RewardItemComponent RewardItemDefinition="def" RewardItem="item"> </RewardItemComponent>
-                                }
-                            }
-
-
-                        }
-                        else
-                        {
-                            <li>
-                                <div class="item-info">
-                                    <span class="empty-collection">Barrows equipment that you earn will show here!</span>
-                                </div>
-                            </li>
-                        }
-                    </ul>
 
                 </div>
 
 
-
             </div>
-
-
-        </div>
 
     </div>
 </div>
 
 @code {
 
+
+    private int simulateHowManyTimes = 1;
 
     private PlayerSettings settings;
     private RewardChest rewardChest;
@@ -227,22 +241,38 @@
         }
     }
 
+    protected void Reset()
+    {
+        rewardChest.Clear();
+        collectionLog.Reset();
+    }
+
+
     protected void Open()
     {
 
         rewardChest.Clear();
 
-        var rewardedItems = RewardChestService.SimulateBarrowsRewardChest(BarrowsBrotherService.GetBrothersKilled(settings), settings.SumTotalLevelOfCryptMonstersKilled, settings.CompletedMorytaniaHardDiary);
-
-
-        foreach (var item in rewardedItems)
+        for (int i = 0; i < simulateHowManyTimes; i++)
         {
-            rewardChest.AddItem(item);
-            collectionLog.AddItem(item);
+            var rewardedItems = RewardChestService.SimulateBarrowsRewardChest(BarrowsBrotherService.GetBrothersKilled(settings), settings.SumTotalLevelOfCryptMonstersKilled, settings.CompletedMorytaniaHardDiary);
+
+
+            foreach (var item in rewardedItems)
+            {
+                // we only populate the reward chest on the last simulation
+                if (i == (simulateHowManyTimes - 1)) {
+                    rewardChest.AddItem(item);
+                }
+                collectionLog.AddItem(item);
+            }
+
+            collectionLog.ChestsOpenedCount++;
         }
 
-        collectionLog.ChestsOpenedCount++;
+            }
+
 
 
     }
-    }
+}

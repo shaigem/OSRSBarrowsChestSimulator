@@ -6,22 +6,20 @@ namespace OSRSBarrowsChestSimulator
     {
 
 
-        public IDictionary<int, RewardItem> Items { get; } = new Dictionary<int, RewardItem>();
+        public IDictionary<int, RewardItem> Items { get; set; } = new Dictionary<int, RewardItem>();
 
 
         public void AddItem(RewardItem item)
         {
-            RewardItem rewardItemFromChest;
-
-            if (Items.TryGetValue(item.Id, out rewardItemFromChest))
+            var id = item.Id;
+            if(Items.ContainsKey(id))
             {
-
-                rewardItemFromChest.Amount += item.Amount;
+                Items[id].Amount += item.Amount;
+                  
+            } else {
+                Items.Add(id, item);
             }
-            else
-            {
-                Items.Add(item.Id, item);
-            }
+           
         }
 
 

@@ -111,7 +111,30 @@ form {
     transform-origin: center;
     transition: 100ms ease-in;
 }
-    
+
+
+.x-times {
+    margin-top: 20px;
+    font-family: RuneScape-Bold-12;
+    color: #ff981f;
+}
+
+.reset-btn {
+    position: relative;
+    display: inline-block;
+    border: none;
+    width: 25px;
+    height: 25px;
+    background-image: url('../img/reset_btn.png');
+    background-color: #645741;
+    transform-origin: center;
+    transition: 100ms ease-in;
+    margin-right: 25px;
+}
+
+.reset-btn:focus {
+    outline: none;
+}
 
 .chest-btn:hover {
             transform: scale(1.07);
