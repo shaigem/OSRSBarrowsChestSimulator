@@ -10,7 +10,7 @@ OSRS Barrows Chest Simulator is a web application that simulates the rewards tha
 ![main-img]
 
 
-[main-img]: https://i.imgur.com/kS2xyDn.png
+[main-img]: https://i.imgur.com/6pwnWf6.png
 
 
 ## Formulas
